@@ -77,7 +77,7 @@ function draw(){
  let sashFrames='',hingeMarks='';for(const p of model.panes){const visible=p.opening?1:0;sashFrames+='<g data-opening-frame="'+p.i+'" opacity="'+visible+'"><path d="'+boxPath(p.sash)+boxPath(p.glass)+'" fill-rule="evenodd" fill="#fff"/>'+outline(p.sash)+outline(p.glass)+'</g>';
  const hinge=hingeSides.get(p.i)||'unknown',edge=hinge==='right'?p.sash.right:p.sash.left,offset=(model.sashFront?0:overlap)+Math.max(0,sash-(model.sashFront?0:overlap))*.35,hx=x+(edge+(hinge==='right'?-offset:offset))*s;
  hingeMarks+='<g data-hinge-marker="'+p.i+'" opacity="'+(p.opening&&hinge!=='unknown'?1:0)+'" stroke="#65717b" stroke-width="2"><title>Pane '+(p.i+1)+' hinge: '+hinge+' (outside view)</title><path d="M'+hx+' '+(y+(p.sash.top+(p.sash.bottom-p.sash.top)*.25-10)*s)+'v'+(20*s)+' M'+hx+' '+(y+(p.sash.top+(p.sash.bottom-p.sash.top)*.75-10)*s)+'v'+(20*s)+'"/></g>';}
- let moving='';if(model.french){const centre=w/2,b={left:centre-gap/2-overlap,right:centre+gap/2+overlap,top:t-overlap,bottom:h-t+overlap};moving=rect(b,'data-moving-mullion="'+mullionPane.value+'" fill="#fff" stroke="#89969f" stroke-width="1"');}
+ let moving='';if(model.french){const centre=w/2,b={left:centre-gap/2-overlap,right:centre+gap/2+overlap,top:t,bottom:h-t};moving=rect(b,'data-moving-mullion="'+mullionPane.value+'" fill="#fff" stroke="#89969f" stroke-width="1"');}
  const rearMullion=view.value==='inside'?moving:'',frontMullion=view.value==='outside'?moving:'';
  const layers=model.sashFront?structural+sashFrames:sashFrames+structural;
  const mirror=view.value==='inside'?'translate('+(2*x+W)+' 0) scale(-1 1)':'';
